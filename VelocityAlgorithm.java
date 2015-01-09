@@ -25,7 +25,7 @@ public class VelocityAlgorithm {
   }
 
   public double CalculateKinectic() {
-    this.KE = .5 * (Velocity)^ 2 *mass;
+    this.KE = .5 * Velocity * Velocity *Mass;
     return KE;
   }
 

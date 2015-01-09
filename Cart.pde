@@ -1,12 +1,14 @@
 class Cart {
 
-  private float x, y, mass, mechEnergy; // m, m, kg, J
-    
+  private float y, mass, mechEnergy; // m, m, kg, J
+  
+  // true if going forward, false if going backward
+  private boolean forward;
+  
   Cart() {
-    x = width/2;
     y = height/2;
     mass = 10;
-    mechEnergy = mass * 9.80665 * y; // all potential energy at first
+    mechEnergy = mass * 9.80665 * y + 100000; // all potential energy at first
   }
   
   float potentialEnergy() {
@@ -29,9 +31,19 @@ class Cart {
     return new PVector(v * 1/hypotenuse, v * slope/hypotenuse);
   }
   
+  void go() {
+    draw();
+    PVector increment = velocity();
+    if (forward) {
+      xOffset += increment.x;
+    } else {
+      xOffset -= increment.x;
+    }
+  }
+  
   void draw() {
     noStroke();
     fill(#FF0000);
-    ellipse(pos.x, height - pos.y, 10, 10);
+    ellipse(width/2 + xOffset, height - y, 10, 10);
   }
 }

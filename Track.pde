@@ -1,29 +1,31 @@
-import java.util.Random;
-import java.util.Iterator;
+import java.util.*;
 
 class Track {
   
   Generator gen;
-  float[] yyy;
+  List<Float> yyy;
   
   Track() {
-    yyy = new float[width];
+    yyy = new LinkedList<Float>();
     gen = new Generator();
-    for (int i = 0; i < yyy.length; i++) {
-      yyy[i] = gen.next();
+    for (int i = 0; i < width + 10; i++) {
+      getNext();
     }
   }
   
-  void getNextAndShift() {
-    System.arraycopy(yyy, 1, yyy, 0, yyy.length - 1);
-    yyy[yyy.length - 1] = gen.next();
+  float getY() {
+    return yyy.get(width/2 + (int) xOffset);
+  }
+  
+  void getNext() {
+    yyy.add(gen.next());
   }
   
   void draw() {
     stroke(#444444);
     strokeWeight(3);
-    for (int i = 0; i < yyy.length - 1; i++) {
-      line(i, height - yyy[i], i+1, height - yyy[i+1]);
+    for (int i = 0; i < yyy.size() - 1; i++) {
+      line(i, height - yyy.get(i), i+1, height - yyy.get(i+1));
     }
   }
   

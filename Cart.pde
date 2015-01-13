@@ -25,7 +25,7 @@ class Cart {
   
   PVector velocity() {
     // determine slope
-    float slope = 0,
+    float slope = slope(), 
           hypotenuse = sqrt(1 + slope*slope),
           v = speed();
     return new PVector(v * 1/hypotenuse, v * slope/hypotenuse);
@@ -42,7 +42,14 @@ this.MechE = KE + PE + WorkNonConservative + WorkApplied;
 }
 
 public int CalculateWorkNonConservative(){
-mass *gravity  *cos(pheta) * KFCo * distance;
+mass *gravity  * 1/sqrt(1+ slope() *slope()) * KFCo * distance;
+
+}
+public float slope(){
+     int index = (int) xOffset;
+return getY(index + 1) - getY(index);
+  }
+ 
 
 }
 

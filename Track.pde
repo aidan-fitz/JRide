@@ -14,7 +14,11 @@ class Track {
   }
   
   float getY() {
-    return yyy.get(width/2 + (int) xOffset);
+    return getY(width/2 + (int) xOffset);
+  }
+
+  float getY(int index) {
+    return yyy.get(index);
   }
   
   void getNext() {

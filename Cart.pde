@@ -5,6 +5,7 @@ class Cart {
   // true if going forward, false if going backward
   private boolean forward;
   
+  // true if the cart should experience friction
   private boolean friction;
 
   Cart() {
@@ -33,19 +34,21 @@ class Cart {
     return new PVector(v * 1/hypotenuse, v * slope/hypotenuse);
   }
 
-  // add to mechEnergy every frame
-  public int friction() {
-    return mass * gravity  * 1/sqrt(1+ slope() *slope()) * KFCo;
+  // multiply by distance(?) and add to mechEnergy every frame
+  float friction() {
+    float sl = slope();
+    return mass * gravity / sqrt(1 + sl*sl) * 0.08;
   }
   
   public float slope() {
     int index = (int) xOffset;
-    return getY(index + 1) - getY(index);
+    return track.getY(index + 1) - track.getY(index);
   }
 
-  public int CalculateAppliedForce() {
-    WorkFA = Force *distance;
-  }
+//for bombs, which transfer momentum to cart
+//  public int CalculateAppliedForce() {
+//    WorkFA = Force *distance;
+//  }
 
   void go() {
     draw();

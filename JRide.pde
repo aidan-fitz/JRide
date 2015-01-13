@@ -1,3 +1,5 @@
+final float gravity = 9.80665; // m/ss
+
 Track track;
 Cart cart;
 

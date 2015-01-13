@@ -11,3 +11,4 @@ Roller coaster simulator. Aidan and Ben's final project for APCS 1/2.
 - **Jan 09**
     - Ben is working on friction and bombs, both of which affect the cart's kinetic energy.
     - Aidan is working on variable scroll speed.
+- **Jan 13** Started to integrate bomb and friction functions into `Cart.pde`

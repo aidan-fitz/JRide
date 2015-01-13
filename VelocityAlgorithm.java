@@ -10,31 +10,16 @@ Some Processing conventions:
 
 */
 public class VelocityAlgorithm {
-  private double Mass, Velocity, Acceleration, Friction, Angle, Slope, KE, PE, Hieght, MechE, Gravity;
+    private double Mass, Velocity, Acceleration, Friction, Angle, Slope, KE, PE, Hieght, MechE, Gravity, WorkApplied, KFCo, WorkFA;
   
-  public void SetHieght(int[] Coordinates, int index) {	
-    this.Hieght = Coordinates[index];
-  }
 
-  public void SetMechanicalEnergy(double Mechanical) {
-    this.MechE = Mechanical;
-  }
-  public double CalculatePotential() {
-    this.PE = Hieght * Gravity * Mass;
-    return PE;
-  }
-
-  public double CalculateKinectic() {
-    this.KE = .5 * Velocity * Velocity *Mass;
-    return KE;
-  }
 public int CalculateMechanical()
 {
 this.MechE = KE + PE + WorkNonConservative + WorkApplied
 }
 
 public int CalculateWorkNonConservative(){
-mass *gravity  *cosine(pheta) * KinecticFictionCo * distance
+mass *gravity  *cosine(pheta) * KFCo * distance
 
 }
 
@@ -44,13 +29,11 @@ WorkFA = Force *distance;
 }
 
 
-  public double VeloctiytoDistance() {
+  public double VelocitytoDistance() {
     // filler
     return 0;
   }
 
-  public void Driver() {
-  }
 
 
 }

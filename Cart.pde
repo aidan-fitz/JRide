@@ -30,6 +30,26 @@ class Cart {
           v = speed();
     return new PVector(v * 1/hypotenuse, v * slope/hypotenuse);
   }
+
+public int CalculateTheta()
+{
+this.Theta =
+}
+
+public int CalculateMechanical()
+{
+this.MechE = KE + PE + WorkNonConservative + WorkApplied;
+}
+
+public int CalculateWorkNonConservative(){
+mass *gravity  *cos(pheta) * KFCo * distance;
+
+}
+
+public int CalculateAppliedForce(){
+WorkFA = Force *distance;
+
+}
   
   void go() {
     draw();

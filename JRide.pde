@@ -1,4 +1,4 @@
-final float gravity = 9.80665; // m/ss
+final float gravity = 4.5; // 9.80665; // m/ss
 
 Track track;
 Cart cart;
@@ -16,16 +16,25 @@ void setup() {
 void draw() {
   // FIXME won't scroll
   background(#b9d9ff);
+  
+  // diagnostic
+  if (cart.kineticEnergy() <= 0) {
+    cart.mechEnergy += 500;
+  }
+  
   pushMatrix();
-  translate(xOffset, 0);
+  translate(-xOffset, 0);
   track.draw();
   track.getNext();
+  cart.setY();
+  cart.go();
+
   popMatrix();
-  cart.y = track.getY();
-  cart.draw();
   
   // diagnostic
   text(cart.speed() + " m/s", 10, 10);
+  
+//  xOffset++;
 }
 
 void keyPressed() {

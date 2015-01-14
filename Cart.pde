@@ -3,7 +3,7 @@ class Cart {
   private float y, mass, mechEnergy; // m, kg, J
 
   // true if going forward, false if going backward
-  private boolean forward;
+  private boolean forward = true;
   
   // true if the cart should experience friction
   private boolean friction;
@@ -11,7 +11,7 @@ class Cart {
   Cart() {
     y = height/2;
     mass = 10;
-    mechEnergy = mass * gravity * y + 100000; // all potential energy at first
+    mechEnergy = mass * gravity * y; // all potential energy at first
   }
 
   float potentialEnergy() {
@@ -31,13 +31,17 @@ class Cart {
     float slope = slope(), 
     hypotenuse = sqrt(1 + slope*slope), 
     v = speed();
-    return new PVector(v * 1/hypotenuse, v * slope/hypotenuse);
+    return new PVector(v * (forward?1:-1)/hypotenuse, v * slope/hypotenuse);
   }
 
   // multiply by distance(?) and add to mechEnergy every frame
   float friction() {
     float sl = slope();
     return mass * gravity / sqrt(1 + sl*sl) * 0.08;
+  }
+  
+  float workFriction() {
+    return friction();
   }
   
   public float slope() {
@@ -49,6 +53,17 @@ class Cart {
 //  public int CalculateAppliedForce() {
 //    WorkFA = Force *distance;
 //  }
+
+  void setY() {
+    float newY = track.getY();
+    
+    if (potentialEnergy() > mechEnergy) {
+      forward = !forward;
+    }
+    else {
+      y = newY;
+    }
+  }
 
   void go() {
     draw();

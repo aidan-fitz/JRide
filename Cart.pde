@@ -38,7 +38,7 @@ this.Theta =
 
 public int CalculateMechanical()
 {
-this.MechE = KE + PE + WorkNonConservative + WorkApplied;
+this.mechEnergy = kineticEnergy() +  potentialEnergy() + WorkNonConservative + WorkApplied;
 }
 
 public int CalculateWorkNonConservative(){

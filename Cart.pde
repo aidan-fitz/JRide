@@ -1,35 +1,39 @@
 class Cart {
 
-  private float y, mass, mechEnergy; // m, m, kg, J
-  
+  private float y, mass, mechEnergy; // m, kg, J
+
   // true if going forward, false if going backward
-  private boolean forward;
+  private boolean forward = true;
   
+  // true if the cart should experience friction
+  private boolean friction;
+
   Cart() {
     y = height/2;
     mass = 10;
-    mechEnergy = mass * 9.80665 * y + 100000; // all potential energy at first
+    mechEnergy = mass * gravity * y; // all potential energy at first
   }
-  
+
   float potentialEnergy() {
-    return mass * 9.80665 * y;
+    return mass * gravity * y;
   }
-  
+
   float kineticEnergy() {
     return mechEnergy - potentialEnergy();
   }
-  
+
   float speed() {
     return sqrt(2 * kineticEnergy() / mass);
   }
-  
+
   PVector velocity() {
     // determine slope
     float slope = slope(), 
-          hypotenuse = sqrt(1 + slope*slope),
-          v = speed();
-    return new PVector(v * 1/hypotenuse, v * slope/hypotenuse);
+    hypotenuse = sqrt(1 + slope*slope), 
+    v = speed();
+    return new PVector(v * (forward?1:-1)/hypotenuse, v * slope/hypotenuse);
   }
+
 
 public int CalculateTheta()
 {
@@ -45,19 +49,40 @@ public int CalculateWorkNonConservative(){
 mass *gravity  * 1/sqrt(1+ slope() *slope()) * KFCo * distance;
 
 }
-public float slope(){
-     int index = (int) xOffset;
-return getY(index + 1) - getY(index);
+
+
+  // multiply by distance(?) and add to mechEnergy every frame
+  float friction() {
+    float sl = slope();
+    return mass * gravity / sqrt(1 + sl*sl) * 0.08;
   }
- 
-
-}
-
-public int CalculateAppliedForce(){
-WorkFA = Force *distance;
-
-}
   
+  float workFriction() {
+    return friction();
+  }
+  
+  public float slope() {
+    int index = (int) xOffset;
+    return track.getY(index + 1) - track.getY(index);
+
+  }
+
+//for bombs, which transfer momentum to cart
+//  public int CalculateAppliedForce() {
+//    WorkFA = Force *distance;
+//  }
+
+  void setY() {
+    float newY = track.getY();
+    
+    if (potentialEnergy() > mechEnergy) {
+      forward = !forward;
+    }
+    else {
+      y = newY;
+    }
+  }
+
   void go() {
     draw();
     PVector increment = velocity();
@@ -67,10 +92,11 @@ WorkFA = Force *distance;
       xOffset -= increment.x;
     }
   }
-  
+
   void draw() {
     noStroke();
     fill(#FF0000);
     ellipse(width/2 + xOffset, height - y, 10, 10);
   }
 }
+

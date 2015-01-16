@@ -1,68 +1,37 @@
 class Bomb {
 
-  private float y, mass, mechEnergy; 
-  
-  private boolean down;
-  
+  private PVector position, velocity;
+
+  private boolean exploding;
+
   Bomb() {
-    y = height;
-    mass = 5;
-    mechEnergy = mass * 9.80665 * y + 100000; 
-  }
-  
-  float potentialEnergy() {
-    return mass * 9.80665 * y;
-  }
-  
-  float kineticEnergy() {
-    return mechEnergy - potentialEnergy();
-  }
-  
-  float speed() {
-    return sqrt(2 * kineticEnergy() / mass);
-  }
-   
-  
-  void  velocity() {
- 
-PVector down = new PVector(0, -1);
-
-}
-
-  float speed() {
-    return sqrt(2 * kineticEnergy() / mass);
+    position = new PVector(random(width), 0);
+    velocity = new PVector(0, 0);
+    exploding = false;
   }
 
-public int ExplodingForce(){
-WorkFA = Force *distance;
+  //public int ExplodingForce(){
+  //WorkFA = Force *distance;
+  //
+  //}
+  void drop() {
+    draw();
+    velocity.y += gravity / frameRate;
+  }
 
-}
-void drop(){
- draw();
-    PVector increment = velocity();
-
-}
-  
-void explode(){
- draw();
-    PVector increment = velocity();
-
-}
+  void explode() {
+    draw();
+  }
 
   void go() {
     draw();
-
-    PVector increment = velocity();
-    if (forward) {
-      xOffset += increment.x;
-    } else {
-      xOffset -= increment.x;
-    }
+    position.add(velocity);
   }
-  
+
   void draw() {
     noStroke();
     fill(#FF0000);
-    ellipse(width/2 + xOffset, height - y, 10, 10);
+    ellipse(position.x, position.y, 10, 10);
   }
 }
+

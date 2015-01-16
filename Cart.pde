@@ -11,7 +11,7 @@ class Cart {
   Cart() {
     y = height/2;
     mass = 10;
-    mechEnergy = mass * gravity * y; // all potential energy at first
+    mechEnergy = mass * gravity * y + 500; // all potential energy at first
   }
 
   float potentialEnergy() {
@@ -35,21 +35,21 @@ class Cart {
   }
 
 
-public int CalculateTheta()
-{
-this.Theta =
-}
+//public int CalculateTheta()
+//{
+//this.Theta =
+//}
 
-public int CalculateMechanical()
-{
-this.mechEnergy = kineticEnergy() +  potentialEnergy() + WorkNonConservative + WorkApplied;
-}
-
-public int CalculateWorkNonConservative(){
-mass *gravity  * 1/sqrt(1+ slope() *slope()) * KFCo * distance;
-
-}
-
+//public int CalculateMechanical()
+//{
+//this.mechEnergy = kineticEnergy() +  potentialEnergy() + WorkNonConservative + WorkApplied;
+//}
+//
+//public int CalculateWorkNonConservative(){
+//mass *gravity  * 1/sqrt(1+ slope() *slope()) * KFCo * distance;
+//
+//}
+//
 
   // multiply by distance(?) and add to mechEnergy every frame
   float friction() {
@@ -64,7 +64,16 @@ mass *gravity  * 1/sqrt(1+ slope() *slope()) * KFCo * distance;
   public float slope() {
     int index = (int) xOffset;
     return track.getY(index + 1) - track.getY(index);
-
+  }
+  
+  // TODO gas and brake cost gold
+  
+  void gas() {
+    mechEnergy += 200;
+  }
+  
+  void brake() {
+    mechEnergy -= 200;
   }
 
 //for bombs, which transfer momentum to cart
@@ -91,12 +100,14 @@ mass *gravity  * 1/sqrt(1+ slope() *slope()) * KFCo * distance;
     } else {
       xOffset -= increment.x;
     }
+    // add increment.x pixels wide track
+    track.getNext(increment.x);
   }
 
   void draw() {
     noStroke();
-    fill(#FF0000);
-    ellipse(width/2 + xOffset, height - y, 10, 10);
+    fill(#009900);
+    ellipse(cartOffset + xOffset, height - y, 10, 10);
   }
 }
 

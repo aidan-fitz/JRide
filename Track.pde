@@ -8,21 +8,21 @@ class Track {
   Track() {
     yyy = new LinkedList<Float>();
     gen = new Generator();
-    for (int i = 0; i < width + 10; i++) {
-      getNext();
-    }
+    getNext(width + 10);
   }
   
   float getY() {
-    return getY(width/2 + (int) xOffset);
+    return getY(cartOffset + xOffset);
   }
 
-  float getY(int index) {
-    return yyy.get(index);
+  float getY(float index) {
+    return yyy.get((int) index);
   }
   
-  void getNext() {
-    yyy.add(gen.next());
+  void getNext(float pixels) {
+    for (int i = 0; i < pixels; i++) {
+      yyy.add(gen.next());
+    }
   }
   
   void draw() {

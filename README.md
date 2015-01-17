@@ -11,4 +11,18 @@ Roller coaster simulator. Aidan and Ben's final project for APCS 1/2.
 - **Jan 09**
     - Ben is working on friction and bombs, both of which affect the cart's kinetic energy.
     - Aidan is working on variable scroll speed.
-- **Jan 13** Started to integrate bomb and friction functions into `Cart.pde`
+- **Jan 12** Ben created a function to calculate work done by friction in `VelocityAlgorithm.java`
+- **Jan 13**
+    - Integrated friction function into `Cart.pde`, but it returns the force, not work; still need to multiply by some value for distance
+    - Deleted `VelocityAlgorithm.java` (see [`d336b`](https://github.com/aidan-fitz/JRide/commit/d336b))
+- **Jan 14**
+    - Added `Cart.workFriction()`, which returns work done by friction on the cart in one frame
+    - Fixed bug where track would move in wrong direction
+- **Jan 15**
+    - Aidan was absent
+    - Ben added `Bomb`, `Monster`, and `StartFile` classes
+    - `StartFile` contains instructions for user
+- **Jan 16**
+    - Aidan deleted `StartFile` and moved the instructions to a plain text file
+    - Aidan attempted a workaround for the disappearing track blog (track is displaced NaN pixels because `Cart.speed()` takes the square root of a negative number
+- **Jan 17**

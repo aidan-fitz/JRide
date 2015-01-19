@@ -26,6 +26,10 @@ class Track {
   }
   
   void draw() {
+    if (Random.NextInt(10) > 3){
+    Coin(cartOffset + xOffset, getY());
+   
+    }
     stroke(#444444);
     strokeWeight(3);
     for (int i = 0; i < yyy.size() - 1; i++) {

@@ -14,10 +14,9 @@ void setup() {
   cart = new Cart();
   cart.y = height/2;
   
-  println("SPACE = start over");
   println("Right Arrow = speed up");
   println("Left Arrow = slow down");
-  println("// Up/Down = switch tracks");
+  println("Hold Mouse = pause");
 }
 
 void draw() {
@@ -33,16 +32,14 @@ void draw() {
   popMatrix();
   
   // diagnostic
-  text(cart.speed() + " m/s", 10, 10);
+  text(cart.mechEnergy + " J, " + cart.speed() + " m/s", 10, 10);
   
-//  xOffset++;
+// Uncomment to show only the first frame
+//  noLoop();
 }
 
 void keyPressed() {
-  if (key == ' ') {
-    track = new Track();
-  }
-  else if (key == CODED) {
+  if (key == CODED) {
     if (keyCode == RIGHT) {
       cart.gas();
     }
@@ -50,4 +47,12 @@ void keyPressed() {
       cart.brake();
     }
   }
+}
+
+void mousePressed() {
+  noLoop();
+}
+
+void mouseReleased() {
+  loop();
 }

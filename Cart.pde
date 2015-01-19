@@ -1,17 +1,17 @@
 class Cart {
 
-  private float y, mass, mechEnergy; // m, kg, J
+  float y, mass, mechEnergy; // m, kg, J
 
   // true if going forward, false if going backward
-  private boolean forward = true;
+  boolean forward = true;
   
   // true if the cart should experience friction
-  private boolean friction;
+  boolean friction;
 
   Cart() {
     y = height/2;
     mass = 10;
-    mechEnergy = mass * gravity * y + 500; // all potential energy at first
+    mechEnergy = mass * gravity * height; // all potential energy at first
   }
 
   float potentialEnergy() {
@@ -23,7 +23,7 @@ class Cart {
   }
 
   float speed() {
-    return sqrt(2 * kineticEnergy() / mass);
+    return sqrt(2 * kineticEnergy() / mass) / 10;
   }
 
   PVector velocity() {

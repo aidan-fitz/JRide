@@ -25,4 +25,7 @@ Roller coaster simulator. Aidan and Ben's final project for APCS 1/2.
 - **Jan 16**
     - Aidan deleted `StartFile` and moved the instructions to a plain text file
     - Aidan attempted a workaround for the disappearing track blog (track is displaced NaN pixels because `Cart.speed()` takes the square root of a negative number
-- **Jan 17**
+- **Jan 18**
+    - Aidan created branch `cruft`
+    - Deleted `Bomb`, `Monster`
+    - Set base mechanical energy of cart relative to screen height, not initial height of cart, so that *kinetic energy is always positive*

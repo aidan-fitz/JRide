@@ -105,6 +105,19 @@ class Cart {
     track.getNext(increment.x);
   }
 
+void CollisionCoins(){
+
+//if (Same coodinates){
+
+     Coins.SetTotal(1);
+       //destroy coin
+}
+   
+     
+
+
+}
+
   void draw() {
     noStroke();
     fill(#009900);

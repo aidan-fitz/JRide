@@ -23,14 +23,14 @@ class Cart {
   }
 
   float speed() {
-    return sqrt(2 * kineticEnergy() / mass) / 10;
+    return sqrt(2 * kineticEnergy() / mass);
   }
 
   PVector velocity() {
     // determine slope
     float slope = slope(), 
     hypotenuse = sqrt(1 + slope*slope), 
-    v = speed();
+    v = speed() / 8;
     return new PVector(v * (forward?1:-1)/hypotenuse, v * slope/hypotenuse);
   }
 

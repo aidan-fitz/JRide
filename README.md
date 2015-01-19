@@ -30,3 +30,4 @@ Roller coaster simulator. Aidan and Ben's final project for APCS 1/2.
     - Deleted `Bomb`, `Monster`
     - Set base mechanical energy of cart relative to screen height, not initial height of cart, so that *kinetic energy is always positive*
     - Divide velocity by constant (`8.0`) internally, so that screen will scroll slower
+    - Ben worked on the Coin class and incorporating that into breaking and speeding up

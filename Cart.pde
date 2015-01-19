@@ -66,13 +66,14 @@ class Cart {
     return track.getY(index + 1) - track.getY(index);
   }
   
-  // TODO gas and brake cost gold
-  
   void gas() {
+    Coin.SetTotal(-10);
     mechEnergy += 200;
+
   }
   
   void brake() {
+    Coin.SetTotal(-10);
     mechEnergy -= 200;
   }
 

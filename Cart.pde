@@ -4,7 +4,7 @@ class Cart {
 
   // true if going forward, false if going backward
   boolean forward = true;
-  
+
   // true if the cart should experience friction
   boolean friction;
 
@@ -34,61 +34,37 @@ class Cart {
     return new PVector(v * (forward?1:-1)/hypotenuse, v * slope/hypotenuse);
   }
 
-
-//public int CalculateTheta()
-//{
-//this.Theta =
-//}
-
-//public int CalculateMechanical()
-//{
-//this.mechEnergy = kineticEnergy() +  potentialEnergy() + WorkNonConservative + WorkApplied;
-//}
+//  // multiply by distance(?) and add to mechEnergy every frame
+//  float friction() {
+//    float sl = slope();
+//    return mass * gravity / sqrt(1 + sl*sl) * 0.08;
+//  }
 //
-//public int CalculateWorkNonConservative(){
-//mass *gravity  * 1/sqrt(1+ slope() *slope()) * KFCo * distance;
-//
-//}
-//
+//  float workFriction() {
+//    return friction();
+//  }
 
-  // multiply by distance(?) and add to mechEnergy every frame
-  float friction() {
-    float sl = slope();
-    return mass * gravity / sqrt(1 + sl*sl) * 0.08;
-  }
-  
-  float workFriction() {
-    return friction();
-  }
-  
   public float slope() {
     int index = (int) xOffset;
     return track.getY(index + 1) - track.getY(index);
   }
-  
-  void gas() {
-    Coin.SetTotal(-10);
-    mechEnergy += 200;
 
+  void gas() {
+    gold -= 10;
+    mechEnergy += 200;
   }
-  
+
   void brake() {
-    Coin.SetTotal(-10);
+    gold -= 10;
     mechEnergy -= 200;
   }
 
-//for bombs, which transfer momentum to cart
-//  public int CalculateAppliedForce() {
-//    WorkFA = Force *distance;
-//  }
-
   void setY() {
     float newY = track.getY();
-    
+
     if (potentialEnergy() > mechEnergy) {
       forward = !forward;
-    }
-    else {
+    } else {
       y = newY;
     }
   }
@@ -105,18 +81,13 @@ class Cart {
     track.getNext(increment.x);
   }
 
-void CollisionCoins(){
-
-//if (Same coodinates){
-
-     Coins.SetTotal(1);
-       //destroy coin
-}
-   
-     
-
-
-}
+//  void CollisionCoins() {
+//
+//    //if (Same coodinates){
+//
+//    Coins.SetTotal(1);
+//    //destroy coin
+//  }
 
   void draw() {
     noStroke();

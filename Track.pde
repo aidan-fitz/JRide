@@ -1,16 +1,16 @@
 import java.util.*;
 
 class Track {
-  
+
   Generator gen;
   List<Float> yyy;
-  
+
   Track() {
     yyy = new LinkedList<Float>();
     gen = new Generator();
     getNext(width + 10);
   }
-  
+
   float getY() {
     return getY(cartOffset + xOffset);
   }
@@ -18,25 +18,21 @@ class Track {
   float getY(float index) {
     return yyy.get((int) index);
   }
-  
+
   void getNext(float pixels) {
     for (int i = 0; i < pixels; i++) {
       yyy.add(gen.next());
     }
   }
-  
+
   void draw() {
-    if (Random.NextInt(10) > 3){
-    Coin(cartOffset + xOffset, getY());
-   
-    }
     stroke(#444444);
     strokeWeight(3);
-    for (int i = 0; i < yyy.size() - 1; i++) {
+    for (int i = 0; i < yyy.size () - 1; i++) {
       line(i, height - yyy.get(i), i+1, height - yyy.get(i+1));
     }
   }
-  
+
   class Generator implements Iterator<Float> {
 
     Random rng;
@@ -45,9 +41,9 @@ class Track {
     float slope;
     int turning; // UP, DOWN, or 0
     int turnTimer;
-    
+
     final int defTurnTimer = 60;
-    
+
     Generator() {
       rng = new Random();
       last = height/2 + rng.nextInt(height/2);
@@ -56,32 +52,30 @@ class Track {
       turning = DOWN;
       turnTimer = defTurnTimer;
     }
-    
+
     Float next() {
       float y = last;
       last += slope;
       adjustSlope();
       return y;
     }
-    
+
     void adjustSlope() {
       if (slope >= 2.5) {
         turning = DOWN;
         turnTimer = defTurnTimer;
-      }
-      else if (slope <= -2.5) {
+      } else if (slope <= -2.5) {
         turning = UP;
         turnTimer = defTurnTimer;
       }
       turn();
       slope += rng.nextFloat() * ((turning == DOWN)?-0.1:0.1);
     }
-    
+
     void turn() {
       if (last + 50 > first) {
         turning = DOWN;
-      }
-      else if (last - 50 < 0) {
+      } else if (last - 50 < 0) {
         turning = UP;
       }
       if (turnTimer <= 0) {
@@ -89,18 +83,18 @@ class Track {
         if (turning == UP || turning == DOWN) {
           turnTimer = defTurnTimer;
         }
-      }
-      else {
+      } else {
         turnTimer--;
       }
     }
-    
+
     boolean hasNext() {
       return true;
     }
-    
+
     void remove() {
       throw new UnsupportedOperationException();
     }
   }
 }
+

@@ -1,38 +1,15 @@
 class Coin {
 
-  private float total; 
-  private ArrayList<float> Storage, index;
+  private PVector coord;
 
- 
-
-  Coin(XCor, YCor) {
-  draw(XCor, YCor);
+  Coin(float x, float y) {
+    coord = new PVector(x, y);
   }
 
-
-float GetTotal(){
-      return this.total;
-
-}
-
-void ModifyStorage(XCor){
-     this.Storage.add(XCor);
-}
-
-
-
-float SetTotal(float delta){
-      this.total += delta;
-
-}
-
-
- 
-
-  void draw(XCor, YCor) {
+  void draw() {
     noStroke();
-    color c = color(255, 204, 0);
-    fill(c);
-    ellipse(XCor,YCor + 5, 5, 5);
+    fill(#FFCC00);
+    ellipse(coord.x, height - coord.y, 10, 10);
   }
 }
+

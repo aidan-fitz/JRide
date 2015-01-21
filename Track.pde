@@ -12,7 +12,7 @@ class Track {
   }
 
   float getY() {
-    return getY(cartOffset + xOffset);
+    return getY(x());
   }
 
   float getY(float index) {

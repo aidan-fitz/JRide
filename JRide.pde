@@ -33,7 +33,7 @@ void draw() {
   cart.setY();
   cart.go();
 
-  for (Coin c: coins) {
+  for (Coin c : coins) {
     c.draw();
   }
   if (random(80) < 1) {
@@ -41,11 +41,15 @@ void draw() {
     coins.add(new Coin(x, track.getY(x) + 5));
   }
 
-
   popMatrix();
 
   fill(#000000);
-  text(cart.mechEnergy + " J, " + cart.speed() + " m/s", 10, 10);
+  text(cart.mechEnergy + " J, " + cart.speed() + " m/s", 10, 16);
+  text("Money: " + gold, 10, 30);
+}
+
+float x() {
+  return cartOffset + xOffset;
 }
 
 void keyPressed() {

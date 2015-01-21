@@ -34,16 +34,6 @@ class Cart {
     return new PVector(v * (forward?1:-1)/hypotenuse, v * slope/hypotenuse);
   }
 
-//  // multiply by distance(?) and add to mechEnergy every frame
-//  float friction() {
-//    float sl = slope();
-//    return mass * gravity / sqrt(1 + sl*sl) * 0.08;
-//  }
-//
-//  float workFriction() {
-//    return friction();
-//  }
-
   public float slope() {
     int index = (int) xOffset;
     return track.getY(index + 1) - track.getY(index);
@@ -79,8 +69,15 @@ class Cart {
     }
     // add increment.x pixels wide track
     track.getNext(increment.x);
+    
+    for (int i = 0; i < coins.size(); i++) {
+      float diff = coins.get(i).getX() - x();
+      if (abs(diff) < 5) {
+        gold += coins.remove(i).getValue();
+      }
+    }
   }
-
+  
 //  void CollisionCoins() {
 //
 //    //if (Same coodinates){
@@ -89,10 +86,12 @@ class Cart {
 //    //destroy coin
 //  }
 
+  
+
   void draw() {
     noStroke();
     fill(#009900);
-    ellipse(cartOffset + xOffset, height - y, 10, 10);
+    ellipse(x(), height - y, 10, 10);
   }
 }
 

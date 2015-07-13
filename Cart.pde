@@ -91,7 +91,7 @@ class Cart {
   void draw() {
     noStroke();
     fill(#009900);
-    ellipse(x(), height - y, 10, 10);
+    ellipse(x(), height - y - 5, 10, 10);
   }
 }
 

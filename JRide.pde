@@ -11,7 +11,7 @@ float xOffset = 5, cartOffset = xOffset;
 String instructions;
 
 void setup() {
-  size(800, 600);
+  size(800, 600, P2D);
   track = new Track();
   cart = new Cart();
   cart.y = height/2;
